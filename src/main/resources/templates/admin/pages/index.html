@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/head"></head>
+<nav th:replace="/fragments/nav :: nav-admin"></nav>
+<body>
+
+
+<div class="container">
+    <h1 class="display-2">Pages</h1>
+    <a href="/admin/pages/add" class="btn btn-primary mb-5">Add new</a>
+
+    <div th:if="${!pages.empty}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="page: ${pages}">
+                <td th:text="${page.title}"></td>
+                <td th:text="${page.slug}"></td>
+                <td><a th:href="@{'/admin/pages/edit/' + ${page.id}}">Edit</a></td>
+                <td><a th:href="@{'/admin/pages/delete/' + ${page.id}}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /div -->
+    <div th:unless="${!pages.empty}">
+        <h4 class="display-4">There are no pages at the moment</h4>
+    </div>
+    <!-- /div -->
+</div>
+<!-- /.container -->
+<footer th:replace="/fragments/footer"></footer>
+</body>
+</html>
