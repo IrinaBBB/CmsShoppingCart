@@ -3,6 +3,7 @@ package ru.aurorahost.cmsshoppingcart.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.aurorahost.cmsshoppingcart.models.PageRepository;
 import ru.aurorahost.cmsshoppingcart.models.data.Page;
@@ -25,5 +26,11 @@ public class AdminPagesController {
         model.addAttribute("pages", pages);
 
         return "admin/pages/index";
+    }
+
+    @GetMapping("/add")
+    public String add(@ModelAttribute Page page) {
+        //model.addAttribute("pages", new Page());
+        return "admin/pages/add";
     }
 }
