@@ -40,7 +40,8 @@ public class AdminPagesController {
     }
 
     @PostMapping("/add")
-    public String add(@Valid Page page, BindingResult bindingResult,
+    public String add(@Valid @ModelAttribute("page") Page page,
+                      BindingResult bindingResult,
                       RedirectAttributes redirectAttributes,
                       Model model) {
 
@@ -60,6 +61,7 @@ public class AdminPagesController {
             redirectAttributes.addFlashAttribute("message", "A slug with this name already exists, please choose " +
                     "another");
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+            redirectAttributes.addFlashAttribute("page", page);
         } else {
             page.setSlug(slug);
             page.setSorting(100);
